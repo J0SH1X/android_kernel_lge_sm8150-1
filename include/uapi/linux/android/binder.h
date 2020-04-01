@@ -357,13 +357,6 @@ struct binder_transaction_data {
 	} data;
 };
 
-#ifdef __KERNEL__
-struct binder_transaction_data_secctx {
-	struct binder_transaction_data transaction_data;
-	binder_uintptr_t secctx;
-};
-
-#endif /* __KERNEL__ */
 struct binder_transaction_data_sg {
 	struct binder_transaction_data transaction_data;
 	binder_size_t buffers_size;
@@ -399,13 +392,6 @@ enum binder_driver_return_protocol {
 	BR_OK = _IO('r', 1),
 	/* No parameters! */
 
-#ifdef __KERNEL__
-	BR_TRANSACTION_SEC_CTX = _IOR('r', 2,
-				      struct binder_transaction_data_secctx),
-	/*
-	 * binder_transaction_data_secctx: the received command.
-	 */
-#endif /* __KERNEL__ */
 	BR_TRANSACTION = _IOR('r', 2, struct binder_transaction_data),
 	BR_REPLY = _IOR('r', 3, struct binder_transaction_data),
 	/*
